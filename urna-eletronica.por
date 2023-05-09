@@ -5,6 +5,7 @@ programa {
 	inclua biblioteca Tipos --> tp
 	inclua biblioteca Matematica --> mat
 	inclua biblioteca Sons --> sn
+	
 	funcao inicio() {
 
 		inteiro 
@@ -25,13 +26,15 @@ programa {
 			percentualVotoEmBranco = 0.0,
 			percentualVotoNulo = 0.0
 			
-		cadeia primeiroCandidato, 
+		cadeia 
+			primeiroCandidato, 
 			segundoCandidato, 
 			terceiroCandidato, 
 			fimDaVotacao
 
 			escreva(">> Digite a sua senha: ")
 			leia(senha)
+			limpa()
 
 			escreva(">> Digite o nome do primeiro candidato: ")
 			leia(primeiroCandidato)
@@ -46,7 +49,8 @@ programa {
 
 
 		faca {
-			escreva("\n1 | ", primeiroCandidato, "\n2 | ", segundoCandidato, "\n3 | ", terceiroCandidato, "\n4 | Voto em branco", "\n5 | Voto nulo\n", "\nDigite a sua senha para encerrar a votação\n")
+			escreva("\n1 | ", primeiroCandidato, "\n2 | ", segundoCandidato, "\n3 | ", terceiroCandidato, "\n4 | Voto em branco", "\n5 | Voto nulo\n")
+			escreva("\nDigite a sua senha para encerrar a votação\n")
 			
 		  	escreva("\n>> Digite o número do seu candidato: ")
 			leia(candidatos) 
@@ -89,25 +93,33 @@ programa {
 					pare
 
 				caso contrario:
-					escreva("\n>> Opção invalida\n")
+					escreva("\n>> Opção invalida <<\n")
 			}
 			
 		} enquanto (candidatos != senha)
-
 			limpa()
 
-			escreva(">> Deseja realmente encerrar a votação? (S/N:) ")
+			escreva(">> Deseja realmente encerrar a votação? (S/N): ")
 			leia(fimDaVotacao)
 
 			limpa()
 
 			se (votosTotais != 0) {
 				escreva("Votos totais: ", votosTotais, "\n")
-				escreva("Votos no candidato ", primeiroCandidato, ": (", votosCandidato1, mat.arredondar(tp.inteiro_para_real(votosCandidato1) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
-				escreva("Votos no candidato ", segundoCandidato, ": (", votosCandidato2, mat.arredondar(tp.inteiro_para_real(votosCandidato2) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
-				escreva("Votos no candidato ", terceiroCandidato, ": (", votosCandidato3, mat.arredondar(tp.inteiro_para_real(votosCandidato3) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
-				escreva("Votos em branco: (", votoEmBranco, mat.arredondar(tp.inteiro_para_real(votoEmBranco) / tp.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
-				escreva("Votos nulos: (", votoNulo, mat.arredondar(tp.inteiro_para_real(votoNulo) / tp.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
+				escreva("Votos no candidato ", primeiroCandidato, ": (", votosCandidato1, 
+					mat.arredondar(tp.inteiro_para_real(votosCandidato1) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
+				
+				escreva("Votos no candidato ", segundoCandidato, ": (", votosCandidato2, 
+					mat.arredondar(tp.inteiro_para_real(votosCandidato2) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
+				
+				escreva("Votos no candidato ", terceiroCandidato, ": (", votosCandidato3, 
+					mat.arredondar(tp.inteiro_para_real(votosCandidato3) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
+				
+				escreva("Votos em branco: (", votoEmBranco, 
+					mat.arredondar(tp.inteiro_para_real(votoEmBranco) / tp.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
+				
+				escreva("Votos nulos: (", votoNulo, 
+					mat.arredondar(tp.inteiro_para_real(votoNulo) / tp.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
 
 				se (votosCandidato1 > votosCandidato2 e votosCandidato1 > votosCandidato3) {
 					escreva("\nO vencedor é: ", primeiroCandidato, "\n")
@@ -118,6 +130,7 @@ programa {
 				} senao {
 					escreva("\nEmpate\n")
 				}
+				
 			} senao {
 				escreva("Não há votos para serem apurados!")
 			} 
@@ -128,7 +141,7 @@ programa {
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3529; 
+ * @POSICAO-CURSOR = 3062; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
