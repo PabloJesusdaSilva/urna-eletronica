@@ -58,7 +58,7 @@ programa {
 			
 		  	escreva("\n>> Digite o número do seu candidato: ")
 			leia(candidatos) 
-			Util.aguarde(1000)
+			
 			
 		  	
 			escolha (candidatos) {
@@ -115,23 +115,15 @@ programa {
 			limpa()
 
 			se (votosTotais != 0) {
-				dataEHora()
-				escreva("\n") 
+				escreva("\n")
+				 
 				escreva("\nVotos totais: ", votosTotais, "\n")
-				escreva("Votos no candidato ", primeiroCandidato, ": (", votosCandidato1, 
-					mat.arredondar(Tipos.inteiro_para_real(votosCandidato1) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
-				
-				escreva("Votos no candidato ", segundoCandidato, ": (", votosCandidato2, 
-					mat.arredondar(Tipos.inteiro_para_real(votosCandidato2) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
-				
-				escreva("Votos no candidato ", terceiroCandidato, ": (", votosCandidato3, 
-					mat.arredondar(Tipos.inteiro_para_real(votosCandidato3) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
-				
-				escreva("Votos em branco: (", votoEmBranco, 
-					mat.arredondar(Tipos.inteiro_para_real(votoEmBranco) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
-				
-				escreva("Votos nulos: (", votoNulo, 
-					mat.arredondar(Tipos.inteiro_para_real(votoNulo) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
+				escreva("\nVotos do candidato: ", primeiroCandidato, " (", Tipos.inteiro_para_real(percentual(votosCandidato1, votosTotais)),")\n")
+				escreva("\nVotos do candidato: ", segundoCandidato, " (", Tipos.inteiro_para_real(percentual(votosCandidato2, votosTotais)),")\n")
+				escreva("\nVotos do candidato: ", terceiroCandidato, " (", Tipos.inteiro_para_real(percentual(votosCandidato3, votosTotais)),")\n")
+				escreva("\nVotos em branco: ", " (", Tipos.inteiro_para_real(percentual(votoEmBranco, votosTotais)),")\n")
+				escreva("\nVotos nulos: ", " (", Tipos.inteiro_para_real(percentual(votoNulo, votosTotais)),")\n")
+			
 
 				se (votosCandidato1 > votosCandidato2 e votosCandidato1 > votosCandidato3) {
 					escreva("\nO vencedor é: ", primeiroCandidato, "\n")
@@ -142,11 +134,11 @@ programa {
 				} senao {
 					escreva("\nEmpate\n")
 				}
+
 				
 			} senao {
 				escreva("Não há votos para serem apurados!")
 			} 
-
 
 		// fecha a função inicio()
 		}
@@ -157,7 +149,7 @@ programa {
 		Sons.reproduzir_som(somUrna, falso)
 	}
 
-	funcao dataEHora() {
+	funcao  dataEHora() {
 		inteiro 
 			diaAtual = cl.dia_mes_atual(),
 			mesAtual = cl.mes_atual(),
@@ -167,6 +159,13 @@ programa {
 
 			escreva("Data: ", diaAtual, "/", mesAtual, "/", anoAtual)
 			
+			escreva("\nHora de inicio: ", hora, ":", minuto)
+			escreva("\nHora do término: ", hora, ":", minuto)
+			
+	}
+
+	funcao real percentual(real parcial, real total) {
+		retorne mat.arredondar((parcial / total * 100), 2)
 	}
 		
 
@@ -177,7 +176,7 @@ programa {
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2147; 
+ * @POSICAO-CURSOR = 3332; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
