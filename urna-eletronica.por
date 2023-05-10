@@ -2,9 +2,11 @@
 
 programa {
 	
-	inclua biblioteca Tipos --> tp
 	inclua biblioteca Matematica --> mat
-	inclua biblioteca Sons --> sn
+	inclua biblioteca Calendario --> cl
+	inclua biblioteca Tipos
+	inclua biblioteca Sons
+	inclua biblioteca Util
 	
 	funcao inicio() {
 
@@ -16,8 +18,8 @@ programa {
 			votoEmBranco = 0, 
 			votoNulo = 0, 
 			senha, 
-			candidatos,
-			som = sn.carregar_som("sons/confirmacao_urna.mp3")
+			candidatos
+			
 			
 		real 
 		 	percentualCandidato1 = 0.0,
@@ -49,45 +51,53 @@ programa {
 
 
 		faca {
+
+			dataEHora()
 			escreva("\n1 | ", primeiroCandidato, "\n2 | ", segundoCandidato, "\n3 | ", terceiroCandidato, "\n4 | Voto em branco", "\n5 | Voto nulo\n")
 			escreva("\nDigite a sua senha para encerrar a votação\n")
 			
 		  	escreva("\n>> Digite o número do seu candidato: ")
 			leia(candidatos) 
+			Util.aguarde(1000)
 			
 		  	
 			escolha (candidatos) {
 				caso 1:
 					limpa()
-					sn.reproduzir_som(som, falso)
+					somConfirmacao()
+					
 					votosCandidato1++
 					votosTotais++
 					pare
 
 				caso 2:
 					limpa()
-					sn.reproduzir_som(som, falso)
+					somConfirmacao()
+					
 					votosCandidato2++
 					votosTotais++
 					pare
 					
 				caso 3:
 					limpa()
-					sn.reproduzir_som(som, falso)
+					somConfirmacao()
+					
 					votosCandidato3++
 					votosTotais++
 					pare
 					
 				caso 4:
 					limpa()
-					sn.reproduzir_som(som, falso)
+					somConfirmacao()
+					
 					votoEmBranco++
 					votosTotais++
 					pare
 					
 				caso 5:
 					limpa()
-					sn.reproduzir_som(som, falso)
+					somConfirmacao()
+					
 					votoNulo++
 					votosTotais++
 					pare
@@ -105,21 +115,23 @@ programa {
 			limpa()
 
 			se (votosTotais != 0) {
-				escreva("Votos totais: ", votosTotais, "\n")
+				dataEHora()
+				escreva("\n") 
+				escreva("\nVotos totais: ", votosTotais, "\n")
 				escreva("Votos no candidato ", primeiroCandidato, ": (", votosCandidato1, 
-					mat.arredondar(tp.inteiro_para_real(votosCandidato1) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
+					mat.arredondar(Tipos.inteiro_para_real(votosCandidato1) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
 				
 				escreva("Votos no candidato ", segundoCandidato, ": (", votosCandidato2, 
-					mat.arredondar(tp.inteiro_para_real(votosCandidato2) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
+					mat.arredondar(Tipos.inteiro_para_real(votosCandidato2) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
 				
 				escreva("Votos no candidato ", terceiroCandidato, ": (", votosCandidato3, 
-					mat.arredondar(tp.inteiro_para_real(votosCandidato3) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
+					mat.arredondar(Tipos.inteiro_para_real(votosCandidato3) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
 				
 				escreva("Votos em branco: (", votoEmBranco, 
-					mat.arredondar(tp.inteiro_para_real(votoEmBranco) / tp.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
+					mat.arredondar(Tipos.inteiro_para_real(votoEmBranco) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
 				
 				escreva("Votos nulos: (", votoNulo, 
-					mat.arredondar(tp.inteiro_para_real(votoNulo) / tp.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
+					mat.arredondar(Tipos.inteiro_para_real(votoNulo) / Tipos.inteiro_para_real(votosTotais) * 10.0, 2), ") \n")
 
 				se (votosCandidato1 > votosCandidato2 e votosCandidato1 > votosCandidato3) {
 					escreva("\nO vencedor é: ", primeiroCandidato, "\n")
@@ -134,14 +146,38 @@ programa {
 			} senao {
 				escreva("Não há votos para serem apurados!")
 			} 
+
+
+		// fecha a função inicio()
 		}
+
+	funcao somConfirmacao() {
+		inteiro somUrna = Sons.carregar_som("sons/confirmacao_urna.mp3")
+
+		Sons.reproduzir_som(somUrna, falso)
+	}
+
+	funcao dataEHora() {
+		inteiro 
+			diaAtual = cl.dia_mes_atual(),
+			mesAtual = cl.mes_atual(),
+			anoAtual = cl.ano_atual(),
+			minuto = cl.minuto_atual(),
+			hora = cl.hora_atual(falso)
+
+			escreva("Data: ", diaAtual, "/", mesAtual, "/", anoAtual)
+			
+	}
+		
+
+// fecha o progama
 }
 /* $$$ Portugol Studio $$$ 
  * 
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3062; 
+ * @POSICAO-CURSOR = 2147; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
